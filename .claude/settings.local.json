@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx skills *)",
+      "Bash(git clone *)",
+      "Bash(npm install *)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\PICHAU\\\\Documents\\\\projetos claude\\\\claude teste\" -Recurse -Force)",
+      "Bash(Select-Object FullName)",
+      "Bash(Sort-Object FullName)",
+      "WebFetch(domain:www.linkedin.com)",
+      "WebFetch(domain:www.behance.net)",
+      "WebFetch(domain:astrodither.robertborghesi.is)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(npm run *)",
+      "Read(//c/Users/PICHAU/.claude/plugins/cache/claude-plugins-official/superpowers/5.1.0/**)",
+      "Bash(bash scripts/start-server.sh --project-dir \"C:\\\\Users\\\\PICHAU\\\\Documents\\\\projetos claude\\\\claude teste\")",
+      "Bash(bash *)",
+      "Bash(del *)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\PICHAU\\\\Documents\\\\projetos claude\\\\claude teste\" -Recurse -Directory)",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(Sort-Object)"
+    ]
+  }
+}

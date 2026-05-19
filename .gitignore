@@ -1,0 +1,35 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.vercel
+
+# Vídeos locais — hospedados no Cloudinary
+public/videos/hero_bg.mp4
+public/videos/about-bg.mp4
+public/videos/story_bg.mp4
+public/videos/story-bg.mp4
+public/videos/fale-bg-01.mp4
+public/videos/fale-bg-02.mp4
+public/videos/fale-bg-03.mp4
+public/videos/Trailer-ReelShort.mp4
