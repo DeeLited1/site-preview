@@ -1,11 +1,64 @@
 import gsap from "gsap";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 
 import Button from "./Button";
 import AnimatedTitle from "./AnimatedTitle";
 
+const PROCESSO_PARAGRAFOS = [
+  "Trabalho em ficção, documentário, publicidade e TV — e em cada contexto sei calibrar o processo ao que o projeto exige, inclusive quando o prazo aperta e é preciso encontrar estratégias rápidas para entregar sem perder qualidade.",
+  "No documentário, meu ponto forte é transformar material bruto em narrativa — não necessariamente linear, mas sempre coesa. O que me interessa é encontrar a forma que melhor serve à história.",
+  "Anos de TV e publicidade me deram precisão no corte dentro de tempos rígidos. Sei o que cabe e o que fica de fora.",
+  "Em ficção, atuo nas duas frentes: na assistência — importação, sync, organização de timelines e sinalização de takes com base no relatório de continuidade — e na montagem.",
+  "Respeito prazos e decisões artísticas.",
+];
+
+const ProcessoModal = ({ onClose }) => {
+  useEffect(() => {
+    const handler = (e) => { if (e.key === "Escape") onClose(); };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [onClose]);
+
+  return (
+    <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
+      <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={onClose} />
+      <div className="relative z-10 w-[95vw] max-w-2xl overflow-hidden rounded-xl border border-[#00e5ff]/15 bg-[#0d0d0d] shadow-[0_0_60px_rgba(0,0,0,0.8)]">
+        <div className="flex items-start justify-between border-b border-white/[0.06] px-6 py-5">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-[4px] text-[#00e5ff]/80">
+              Como trabalho
+            </p>
+            <h2 className="mt-0.5 text-[22px] font-bold tracking-wide text-white">
+              Meu Processo
+            </h2>
+          </div>
+          <button
+            onClick={onClose}
+            className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 text-sm text-[#888] transition hover:border-white/20 hover:text-white"
+          >
+            ✕
+          </button>
+        </div>
+
+        <div className="flex flex-col gap-5 px-6 py-7">
+          {PROCESSO_PARAGRAFOS.map((p, i) => (
+            <p key={i} className="font-circular-web text-sm leading-relaxed text-white/70">
+              {p}
+            </p>
+          ))}
+        </div>
+
+        <div className="border-t border-white/[0.04] py-3 text-center">
+          <span className="text-[10px] uppercase tracking-[2px] text-white/20">ESC para fechar</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const FloatingImage = () => {
   const frameRef = useRef(null);
+  const [processoOpen, setProcessoOpen] = useState(false);
 
   const handleMouseMove = (e) => {
     const { clientX, clientY } = e;
@@ -47,6 +100,8 @@ const FloatingImage = () => {
 
   return (
     <div id="story" className="min-h-dvh w-screen bg-black text-blue-50">
+      {processoOpen && <ProcessoModal onClose={() => setProcessoOpen(false)} />}
+
       <div className="flex size-full flex-col items-center py-10 pb-24">
         <p className="font-general text-sm uppercase md:text-[10px]">
           a narrativa em movimento
@@ -90,29 +145,12 @@ const FloatingImage = () => {
               </div>
             </div>
 
-            {/* for the rounded corner */}
-            <svg
-              className="invisible absolute size-0"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+            <svg className="invisible absolute size-0" xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <filter id="flt_tag">
-                  <feGaussianBlur
-                    in="SourceGraphic"
-                    stdDeviation="8"
-                    result="blur"
-                  />
-                  <feColorMatrix
-                    in="blur"
-                    mode="matrix"
-                    values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
-                    result="flt_tag"
-                  />
-                  <feComposite
-                    in="SourceGraphic"
-                    in2="flt_tag"
-                    operator="atop"
-                  />
+                  <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur" />
+                  <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="flt_tag" />
+                  <feComposite in="SourceGraphic" in2="flt_tag" operator="atop" />
                 </filter>
               </defs>
             </svg>
@@ -121,19 +159,12 @@ const FloatingImage = () => {
 
         <div className="-mt-80 flex w-full justify-center md:-mt-64 md:me-44 md:justify-end">
           <div className="flex h-full w-fit flex-col items-center md:items-start">
-            <p className="mt-3 max-w-sm text-center font-circular-web text-violet-50 md:text-start">
-              Da captura à entrega final, cada decisão de edição carrega
-              intenção. O ritmo, o corte, a emoção — tudo pensado para que
-              sua história chegue ao coração do espectador.
-            </p>
-
-            <a href="https://www.behance.net/danielepimentel" target="_blank" rel="noopener noreferrer">
-              <Button
-                id="realm-btn"
-                title="ver meu processo"
-                containerClass="mt-5"
-              />
-            </a>
+            <Button
+              id="realm-btn"
+              title="veja meu processo"
+              containerClass="mt-5 cursor-pointer"
+              onClick={() => setProcessoOpen(true)}
+            />
           </div>
         </div>
       </div>
