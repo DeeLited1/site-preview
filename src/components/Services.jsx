@@ -95,13 +95,7 @@ const Services = () => {
             </div>
           ))}
 
-          <div className="service-item border-t border-white/10 pt-8">
-            <p className="font-circular-web text-sm text-blue-50/40 tracking-wide">
-              {SECONDARY.join(" · ")}
-            </p>
-          </div>
-
-          <div className="service-item mt-16 flex justify-center">
+<div className="service-item mt-16 flex justify-center">
             <a href="https://wa.me/5521998595665" target="_blank" rel="noopener noreferrer">
               <Button
                 title="falar comigo"
