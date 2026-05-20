@@ -9,33 +9,48 @@ import Button from "./Button";
 const navItems = ["Sobre", "Serviços", "Contato"];
 
 const NavBar = () => {
-  // State for toggling audio and visual indicator
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const [isIndicatorActive, setIsIndicatorActive] = useState(false);
   const [logoHovered, setLogoHovered] = useState(false);
 
-  // Refs for audio and navigation container
-  const audioElementRef = useRef(null);
+  const scWidgetRef = useRef(null);
   const navContainerRef = useRef(null);
+
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://w.soundcloud.com/player/api.js";
+    script.onload = () => {
+      const widget = window.SC.Widget(document.getElementById("sc-widget"));
+      scWidgetRef.current = widget;
+    };
+    document.body.appendChild(script);
+  }, []);
+
+  useEffect(() => {
+    const handler = () => {
+      if (scWidgetRef.current) scWidgetRef.current.pause();
+      setIsAudioPlaying(false);
+      setIsIndicatorActive(false);
+    };
+    window.addEventListener("pauseMusic", handler);
+    return () => window.removeEventListener("pauseMusic", handler);
+  }, []);
 
   const { y: currentScrollY } = useWindowScroll();
   const [isNavVisible, setIsNavVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  // Toggle audio and visual indicator
   const toggleAudioIndicator = () => {
+    if (scWidgetRef.current) {
+      if (isAudioPlaying) {
+        scWidgetRef.current.pause();
+      } else {
+        scWidgetRef.current.play();
+      }
+    }
     setIsAudioPlaying((prev) => !prev);
     setIsIndicatorActive((prev) => !prev);
   };
-
-  // Manage audio playback
-  useEffect(() => {
-    if (isAudioPlaying) {
-      audioElementRef.current.play();
-    } else {
-      audioElementRef.current.pause();
-    }
-  }, [isAudioPlaying]);
 
   useEffect(() => {
     if (currentScrollY === 0) {
@@ -114,11 +129,12 @@ const NavBar = () => {
               onClick={toggleAudioIndicator}
               className="ml-10 flex items-center space-x-0.5"
             >
-              <audio
-                ref={audioElementRef}
+              <iframe
+                id="sc-widget"
+                src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/danielepimentel/sets/daniele-pimentel-site&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&visual=false"
                 className="hidden"
-                src="/audio/loop.mp3"
-                loop
+                allow="autoplay"
+                title="soundcloud player"
               />
               {[1, 2, 3, 4].map((bar) => (
                 <div

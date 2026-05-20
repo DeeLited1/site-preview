@@ -351,6 +351,11 @@ const Features = () => {
   const [novelasOpen, setNovelasOpen] = useState(false);
   const [clipesOpen, setClipesOpen] = useState(false);
 
+  const openModal = (setter) => {
+    window.dispatchEvent(new Event("pauseMusic"));
+    setter(true);
+  };
+
   return (
     <section id="projetos" className="bg-black pb-52">
       {docsOpen && <DocsModal onClose={() => setDocsOpen(false)} />}
@@ -371,7 +376,7 @@ const Features = () => {
 
         <BentoTilt className="border-hsla relative mb-7 h-96 w-full overflow-hidden rounded-md md:h-[65vh]">
           <button
-            onClick={() => setDocsOpen(true)}
+            onClick={() => openModal(setDocsOpen)}
             className="group relative size-full text-left"
           >
             <img
@@ -400,7 +405,7 @@ const Features = () => {
         <div className="grid h-[135vh] w-full grid-cols-2 grid-rows-3 gap-7">
           <BentoTilt className="bento-tilt_1 row-span-1 md:col-span-1 md:row-span-2">
             <button
-              onClick={() => setFiccaoOpen(true)}
+              onClick={() => openModal(setFiccaoOpen)}
               className="group relative size-full text-left"
             >
               <img
@@ -425,7 +430,7 @@ const Features = () => {
 
           <BentoTilt className="bento-tilt_1 row-span-1 ms-32 md:col-span-1 md:ms-0">
             <button
-              onClick={() => setNovelasOpen(true)}
+              onClick={() => openModal(setNovelasOpen)}
               className="group relative size-full text-left"
             >
               <img
@@ -448,7 +453,7 @@ const Features = () => {
 
           <BentoTilt className="bento-tilt_1 me-14 md:col-span-1 md:me-0">
             <button
-              onClick={() => setClipesOpen(true)}
+              onClick={() => openModal(setClipesOpen)}
               className="group relative size-full text-left"
             >
               <img
