@@ -386,9 +386,6 @@ const Features = () => {
                 <h1 className="bento-title special-font">
                   D<b>O</b>Cs
                 </h1>
-                <p className="mt-3 max-w-64 text-xs md:text-base">
-                  Documentários que capturam a essência da realidade com profundidade, sensibilidade e verdade.
-                </p>
               </div>
               <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-[#00e5ff]">
                 <span className="opacity-60 transition-opacity duration-300 group-hover:opacity-100">
@@ -415,9 +412,6 @@ const Features = () => {
               <div className="relative z-10 flex size-full flex-col justify-between p-5 text-blue-50">
                 <div>
                   <h1 className="bento-title special-font">fic<b>ç</b>ão</h1>
-                  <p className="mt-3 max-w-64 text-xs md:text-base">
-                    Ficção que transporta o espectador para outros mundos com narrativas envolventes e emocionantes.
-                  </p>
                 </div>
                 <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-[#00e5ff]">
                   <span className="opacity-60 transition-opacity duration-300 group-hover:opacity-100">
@@ -442,10 +436,7 @@ const Features = () => {
               <div className="absolute inset-0 bg-black/50 transition-colors duration-500 group-hover:bg-black/40" />
               <div className="relative z-10 flex size-full flex-col justify-between p-5 text-blue-50">
                 <div>
-                  <h1 className="bento-title special-font">nov<b>e</b>las</h1>
-                  <p className="mt-3 max-w-64 text-xs md:text-base">
-                    Novelas verticais para mobile — storytelling adaptado à nova era do entretenimento digital.
-                  </p>
+                  <h1 className="bento-title special-font">nov<b>e</b>las v<b>e</b>rticais</h1>
                 </div>
                 <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-[#00e5ff]">
                   <span className="opacity-60 transition-opacity duration-300 group-hover:opacity-100">clique para assistir</span>
@@ -469,9 +460,6 @@ const Features = () => {
               <div className="relative z-10 flex size-full flex-col justify-between p-5 text-blue-50">
                 <div>
                   <h1 className="bento-title special-font">cli<b>p</b>es</h1>
-                  <p className="mt-3 max-w-64 text-xs md:text-base">
-                    Videoclipes que traduzem músicas em experiências visuais únicas e memoráveis.
-                  </p>
                 </div>
                 <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-[#00e5ff]">
                   <span className="opacity-60 transition-opacity duration-300 group-hover:opacity-100">clique para assistir</span>
